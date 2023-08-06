@@ -19,16 +19,45 @@ def get_sampling_interval():
 		print("Por favor, ingrese un valor numérico válido.")
 		return get_sampling_interval()
 
-# Función que devuelve el valor de "NUM_READING" a partir de las horas de recolección de datos que el usuario desee.
-def get_hours_of_data():
-	'''Solicita al usuario la duración total del periodo de muestreo en horas.'''
-	try:
-		hours = float(input("Ingrese cuántas horas de datos desea recolectar: "))
-		NUM_READINGS = int(hours * 3600 / D_TIME) # Se calcula el número de lecturas en función del intervalo de muestreo y las horas proporcionadas.
-		return NUM_READINGS
-	except ValueError:
-		print("Por favor, ingrese un valor numérico válido para las horas.")
-		return get_hours_of_data()
+# Funcion: piude al usuario el tiempo de toma de datos y lo convierte a segundos.
+def get_duration_in_seconds():
+	'''Solicita al usuario la duración y la unidad (segundos, mimutos u horas)
+	y devuelve la duración total en segundos'''
+
+	print("¿Durante cuanto tiempo desea recolectar datos?")
+	print("Primero seleccione la unidad de tiempo:")
+	print("1: Segundos")
+	print("2: Minutos")
+	print("3: Horas")
+
+	choice = input("Ingrese su opción (1/2/3): ")
+
+	if choice == "1":
+		try:
+			duration = float(input("Ingrese la duración en segundos: "))
+			return duration
+		except ValueError
+			print("Por favor, ingrese un valor numérico válido.")
+			return get_duration_in_seconds()
+		
+	elif choice == "2":
+		try:
+			duration = float(input("Ingrese la duración en minutos: "))
+			return duration * 60 # Convertimos minutos a segundos
+		except ValueError:
+			print("Por favor, ingrese un valor numérico válido.")
+			return get_duration_in_seconds()
+		
+	elif choice == "3":
+		try:
+			duration = float(input("Ingrese la duración en horas: "))
+			return duration * 3600 # Convertimos horas a segundos
+		except ValueError:
+			print("Por favor, ingrese un valor numérico válido.")
+			return get_duration_in_seconds()
+	else:
+		print("Opción no valida, Por favor, selecione 1, 2 o 3.")
+		return get_duration_in_seconds()
 
 # Configuración del dispositivo en una función:
 def configure_device(port, config_file): # Los parametros necesarios sera, el puerto y el archivo de configuración
@@ -77,9 +106,10 @@ if __name__ == "__main__":
 	# Solicitamos el intervalo de muestreo al usuario:
 	D_TIME = get_sampling_interval()
 
-	# Solicitamos el tiempo de recolección de datos (tiempo totoal de lectura) al usuaio:
-	NUM_READINGS = get_hours_of_data() # Se obtiene el numero total de lecturas y se guarda en la variable "NUM_READINGS"
-
+	# Calcularemos el número total de lecturas que tomara el dispositivo.
+	time_seconds = get_duration_in_seconds()
+	NUM_READINGS = int(time_seconds / D_TIME) # divismos el tiempo de muestreo entre el intervalo de muestreo, ambos en unidades de segundos.
+	
 	# Configuración del dispositivo:
 	device = configure_device(PORT, CONFIG_FILE) # Se configura el dispositivo y se guarda en nla variable "device"
 
