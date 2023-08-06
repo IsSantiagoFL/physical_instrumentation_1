@@ -38,7 +38,7 @@ def get_duration_in_seconds():
 		try:
 			duration = float(input("Ingrese la duración en segundos: "))
 			return duration
-		except ValueError
+		except ValueError:
 			print("Por favor, ingrese un valor numérico válido.")
 			return get_duration_in_seconds()
 		
