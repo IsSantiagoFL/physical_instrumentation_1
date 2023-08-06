@@ -5,8 +5,10 @@ from datetime import datetime # Para trabajar con fechas y tiempos
 from datetime import timedelta # Para trabajar con fechas y tiempos
 from uLogg import Meter # Para interactuar con el datalogger
 
+
 if __name__ == "__main__":
 
+	
 # 1. Inicialización de las variables:
 	Dtime=0.1 # Es el intervalo de tiempo que se espera entre cada lectura
 	TimeWait=0 # Es el tiempo que espera antes de tomar la siguiente lectura
