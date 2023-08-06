@@ -20,7 +20,7 @@ mt.ReadConfFile('config1.txt') # Se usa un método para leer el archivo de confi
 # 3. Adquisición de datos:
 while cont<200: # Bucle que tomara 200 lecturas del dispositivo
 	TimeNow=datetime.now()	# Sirve para saber el tiempo y la hora actual
-	TimeUnix=TimeNow.timestamp()	# C
+	TimeUnix=TimeNow.timestamp()	
 
 	if TimeUnix >= TimeWait: # Cada vez que el tiempo actual alcanza (o supera) el TimeWait, se realiza una lectura del dispositivo, se almacena y se actualiza el TimeWait para la próxima lectura.
 		TimeWait=TimeUnix+Dtime
