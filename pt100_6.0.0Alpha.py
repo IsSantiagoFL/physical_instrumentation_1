@@ -100,20 +100,39 @@ def save_to_csv(data, filename="data.csv"): # Aquí se esta definicinedo la func
         for i in range(len(data[0])): # El bucle iterara cada elemento de "data" donde estan los datos guardados
             writer.writerow([data[0][i], data[1][i]]) # y luego los ira escibiendo en el archivo CSV
 
-
-
 # Se define la función para crear las graficas de los datos obtenidos:
 def plot_data(data): # El unico parametro de entrada que acepta es "data" la lista para almacenar los datos obtenidos por el dispositivo.
-	"""Grafica los datos recolectados."""
-	plt.plot(data[0], data[1], label='Temperatura Ambiente') # La función toma dos argumentos, que son las coordenadas x e y para el gráfico. En este caso, data[0] se usa para el eje x, y data[1] se usa para el eje y.
-	# Se configurara el aspecto visual de la gráfica
-	plt.xlabel('Tiempo') # Etiqueta del eje x
-	plt.ylabel('Temperatura (ºC)') # Etiqueta del eje y
-	plt.title('Temperatura Ambiente a lo largo del tiempo') # Título del gráfico
-	plt.legend() # Mostrar leyenda
+	"""Grafica los datos recolectados y su derivada."""
+	# Obteniendo las diferencias de tiempo y temperatura.
+	time_deltas = np.diff(data[0]) # Diferencias consecutivas en el tiempo
+	temp_deltas = np.diff(data[1]) # Diferencias consecutivas en la temperatura
+
+	# Calculamos la derivada (pendiente) de la temperatura respecto al tiempo
+	derivatives = temp_deltas / time_deltas
+
+	# Graficamos los datos originales (Temperatura)
+	fig, ax1 = plt.subplots()
+
+	ax1.set_xlabel('Tiempo')
+	ax1.set_ylabel('Temperatura (ºC)', color = 'tab:blue')
+	ax1.plot(data[0], data[1], label = 'Temperatura Ambiente', color = 'tab:blue')
+	ax1.tick_params(axis='y', labelcolor = 'tab:blue')
+
+	# Creando un segundo eje para la derivada
+	ax2 = ax1.twinx()
+	ax2.set_ylabel('Derivada (ºC/s)', color = 'tab:red')
+	ax2.plot(data[0][1:], derivatives, label = 'Derivada', color = 'tab:red')
+	ax2.tick_params(axis='y', labelcolor = 'tab:red')
+
+	# Configurando el aspecto visual
+	plt.title('Temperatura Ambiente y su derivada a lo largo del tiempo') # Título del gráfico
+	fig.tight_layout()
+	# plt.legend() # Mostrar leyenda
 	plt.grid(True) # Mostrar una grilla para facilitar la lectura
+	
 	# para visualizar el gráfico en una ventana emergente.
 	plt.show() # Esta función muestra el gráfico y permite al usuario interactuar con él
+
 
 if __name__ == "__main__":
 	# Solicitamos el intervalo de muestreo al usuario:
