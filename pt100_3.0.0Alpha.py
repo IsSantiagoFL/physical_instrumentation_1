@@ -6,13 +6,31 @@ from datetime import timedelta # Para trabajar con fechas y tiempos
 from uLogg import Meter # Para interactuar con el datalogger
 
 # Definir las constantes:
-D_TIME = 0.1 # Es el intervalo de tiempo que se espera entre cada lectura
-NUM_READINGS = 200 # Número de lecturas que se tomaran del dispositivo
 PORT = 'COM15' # Indica al puerto al que se conectara el dispositivo
 CONFIG_FILE = 'config1.txt' # Indica el archivo que contiene la configuración del dispositivo
 
+# Crea una función que devuelve "D_TIME" a partir de lo que el usuario desee
+def get_sampling_interval():
+	'''Solicita al usuario el intervalo de muestreo (tiempo entre lecturas) en segundos'''
+	try:
+		D_TIME = float(input("Ingrese el intervalo de muestre en segundos (por ejemplo, 1.0 para un dato por segundo): "))
+		return D_TIME
+	except ValueError:
+		print("Por favor, ingrese un valor numérico válido.")
+		return get_sampling_interval()
 
-# 1. Configuración del dispositivo en una función:
+# Función que devuelve el valor de "NUM_READING" a partir de las horas de recolección de datos que el usuario desee.
+def get_hours_of_data():
+	'''Solicita al usuario la duración total del periodo de muestreo en horas.'''
+	try:
+		hours = float(input("Ingrese cuántas horas de datos desea recolectar: "))
+		NUM_READINGS = int(hours * 3600 / D_TIME) # Se calcula el número de lecturas en función del intervalo de muestreo y las horas proporcionadas.
+		return NUM_READINGS
+	except ValueError:
+		print("Por favor, ingrese un valor numérico válido para las horas.")
+		return get_hours_of_data()
+
+# Configuración del dispositivo en una función:
 def configure_device(port, config_file): # Los parametros necesarios sera, el puerto y el archivo de configuración
 	'''Configura el dispositivo.'''
 	# A continuación de inicializa el dispostivo creando una instancia de la clase "Meter"
@@ -20,7 +38,7 @@ def configure_device(port, config_file): # Los parametros necesarios sera, el pu
 	mt.ReadConfFile(config_file) # Se usa un método para configurar el dispositivo usando el archivo de configuración especificado
 	return mt # Devuelve el objeto "mt" que es el dispotivo ya configurado y conectado, listo para ser usado.
 
-# 2. Adquisición de datos con el dispositivo ya configurado:
+# Adquisición de datos con el dispositivo ya configurado:
 def collect_data(device, num_readings): # Parametros de entrada: Dispositivo previamente configurado y numero de lecturas a tomar
 	'''Recolecta datos del dispositivo.'''
 	data = [[],[]] # Se inicializa una lista llamada "data", es una lista bidimensional para almacenar los datos del dispositivo
@@ -42,7 +60,7 @@ def collect_data(device, num_readings): # Parametros de entrada: Dispositivo pre
 	
 	return data # devuelve la lista data que contiene los datos recolectados.
 			
-# 3. Se define la función para crear las graficas de los datos obtenidos:
+# Se define la función para crear las graficas de los datos obtenidos:
 def plot_data(data): # El unico parametro de entrada que acepta es "data" la lista para almacenar los datos obtenidos por el dispositivo.
 	"""Grafica los datos recolectados."""
 	plt.plot(data[0], data[1], label='Temperatura Ambiente') # La función toma dos argumentos, que son las coordenadas x e y para el gráfico. En este caso, data[0] se usa para el eje x, y data[1] se usa para el eje y.
@@ -56,12 +74,18 @@ def plot_data(data): # El unico parametro de entrada que acepta es "data" la lis
 	plt.show() # Esta función muestra el gráfico y permite al usuario interactuar con él
 
 if __name__ == "__main__":
-	# 1. Configuración del dispositivo:
+	# Solicitamos el intervalo de muestreo al usuario:
+	D_TIME = get_sampling_interval()
+
+	# Solicitamos el tiempo de recolección de datos (tiempo totoal de lectura) al usuaio:
+	NUM_READINGS = get_hours_of_data() # Se obtiene el numero total de lecturas y se guarda en la variable "NUM_READINGS"
+
+	# Configuración del dispositivo:
 	device = configure_device(PORT, CONFIG_FILE) # Se configura el dispositivo y se guarda en nla variable "device"
 
-	# 2. Adquisición de datos
+	# Adquisición de datos
 	data = collect_data(device, NUM_READINGS) # Se hace al adquisiscion de datos y se guarda en la varible "data"
 
-	# 3. Finalización y graficación
+	# Finalización y graficación
 	device.ClosePortLogg() # Se cierra la comunicación, la conexción con el dispositivo "device", liberando el recurso asociado
 	plot_data(data) # Se grafica los datos guardados en la variable "data"
