@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt # Para la creación de gráficos y visulizarlos
 from datetime import datetime # Para trabajar con fechas y tiempos
 from datetime import timedelta # Para trabajar con fechas y tiempos
 from uLogg import Meter # Para interactuar con el datalogger
+import csv # Importar el modulo csv para guardar los datos en un .csv
+
 
 # Definir las constantes:
 PORT = 'COM15' # Indica al puerto al que se conectara el dispositivo
@@ -88,7 +90,18 @@ def collect_data(device, num_readings): # Parametros de entrada: Dispositivo pre
 			print(f'{cont} {str(data[0][-1])[:-5]} {data[1][-1]:.1f}') # imprimir información en la consola: numero actual de conjunto de datos recolectados, ultimo valor agregado a las listas de data.
 	
 	return data # devuelve la lista data que contiene los datos recolectados.
-			
+
+# Guarda los datos recolectados en un archivo .csv
+def save_to_csv(data, filename="data.csv"): # Aquí se esta definicinedo la función
+    '''Guarda los datos en un archivo CSV.'''
+    with open(filename, 'w', newline='') as file: # Se esta creando el archivo con permisos de escritura
+        writer = csv.writer(file) # creamos el objeto "writer" que nos permite escribir datos en ela archivo
+        writer.writerow(["Tiempo", "Temperatura (ºC)"])  # Escribir encabezados
+        for i in range(len(data[0])): # El bucle iterara cada elemento de "data" donde estan los datos guardados
+            writer.writerow([data[0][i], data[1][i]]) # y luego los ira escibiendo en el archivo CSV
+
+
+
 # Se define la función para crear las graficas de los datos obtenidos:
 def plot_data(data): # El unico parametro de entrada que acepta es "data" la lista para almacenar los datos obtenidos por el dispositivo.
 	"""Grafica los datos recolectados."""
@@ -115,6 +128,9 @@ if __name__ == "__main__":
 
 	# Adquisición de datos
 	data = collect_data(device, NUM_READINGS) # Se hace al adquisiscion de datos y se guarda en la varible "data"
+
+	# Guardar los datos en un archivo CSV:
+	save_to_csv(data, "temperatura_ambiente.csv")
 
 	# Finalización y graficación
 	device.ClosePortLogg() # Se cierra la comunicación, la conexción con el dispositivo "device", liberando el recurso asociado
