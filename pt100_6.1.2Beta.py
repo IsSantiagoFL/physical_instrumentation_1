@@ -119,7 +119,7 @@ def plot_data(data): # El unico parametro de entrada que acepta es "data" la lis
 	ax1.set_xlabel('Tiempo')
 	ax1.set_ylabel('Temperatura (ºC)', color = 'tab:blue')
 	ax1.plot(data[0], data[1], label='Temperatura Ambiente', color='#0000FF', linestyle='--')
-	ax1.tick_params(axis='y', labelcolor='#0000FF')a
+	ax1.tick_params(axis='y', labelcolor='#0000FF')
 
 	# Creando un segundo eje para la derivada
 	ax2 = ax1.twinx()
