@@ -147,7 +147,8 @@ def plot_data(data): # El unico parametro de entrada que acepta es "data" la lis
 
 	# Mostrando la leyenda con todas las etiquetas
 	handles = [temp_handle, handle1, handle2, handle3, handle4, handle5, handle6, handle7, handle8, handle9]
-	ax1.legend(loc="center left", bbox_to_anchor=(1, 0.5), handles=handles)
+	
+	ax1.legend(loc="upper left")
 
 	# Para incluir la leyenda de la derivada en el eje derecho
 	ax2.legend(loc="upper right")
