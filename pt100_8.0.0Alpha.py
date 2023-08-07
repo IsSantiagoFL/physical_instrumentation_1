@@ -133,14 +133,21 @@ def plot_data(data): # El unico parametro de entrada que acepta es "data" la lis
 	# plt.legend() # Mostrar leyenda
 	plt.grid(True) # Mostrar una grilla para facilitar la lectura
 
+	# "Handles" para las estadísticas de temperatura
+	temp_handle, = ax1.plot(data[0], data[1], label = 'Temperatura Ambiente', color = 'tab:blue', linestyle='--')
 	handle1, = ax1.plot([], [], marker="", linestyle="", label=f"Min Temp: {min_temp:.2f} ºC")
 	handle2, = ax1.plot([], [], marker="", linestyle="", label=f"Max Temp: {max_temp:.2f} ºC")
 	handle3, = ax1.plot([], [], marker="", linestyle="", label=f"Mean Temp: {mean_temp:.2f} ºC")
 	handle4, = ax1.plot([], [], marker="", linestyle="", label=f"Std Dev: {std_temp:.2f}")
 	handle5, = ax1.plot([], [], marker="", linestyle="", label=f"Num of Readings: {num_readings}")
-		
+	handle6, = ax1.plot([], [], marker="", linestyle="", label=f"Start Time: {start_time}")
+	handle7, = ax1.plot([], [], marker="", linestyle="", label=f"End Time: {end_time}")
+	handle8, = ax1.plot([], [], marker="", linestyle="", label=f"Total Time: {total_time}")
+	handle9, = ax1.plot([], [], marker="", linestyle="", label=f"Sampling Interval: {sampling_interval}")
+
 	# Mostrando la leyenda con todas las etiquetas
-	ax1.legend(loc="upper left", handles=[handle1, handle2, handle3, handle4, handle5])
+	handles = [temp_handle, handle1, handle2, handle3, handle4, handle5, handle6, handle7, handle8, handle9]
+	ax1.legend(loc="center left", bbox_to_anchor=(1, 0.5), handles=handles)
 
 	# Para incluir la leyenda de la derivada en el eje derecho
 	ax2.legend(loc="upper right")
@@ -164,6 +171,10 @@ if __name__ == "__main__":
 	data = collect_data(device, NUM_READINGS) # Se hace al adquisiscion de datos y se guarda en la varible "data"
 	
 	# Calculando las estadísticas
+	start_time = data[0][0]
+	end_time = data[0][-1]
+	total_time = end_time - start_time
+	sampling_interval = data[0][1] - data[0][0]
 	temperatures = np.array(data[1])
 	min_temp = np.min(temperatures)
 	max_temp = np.max(temperatures)
