@@ -107,8 +107,11 @@ def plot_data(data): # El unico parametro de entrada que acepta es "data" la lis
 	time_deltas = np.diff(data[0]) # Diferencias consecutivas en el tiempo
 	temp_deltas = np.diff(data[1]) # Diferencias consecutivas en la temperatura
 
+	# Convertir time_deltas a segundos (es una lista de objetos timedelta)
+	time_deltas_in_seconds = [delta.total_seconds() for delta in time_deltas]
+
 	# Calculamos la derivada (pendiente) de la temperatura respecto al tiempo
-	derivatives = temp_deltas / time_deltas
+	derivatives = temp_deltas / np.array(time_deltas_in_seconds)
 
 	# Graficamos los datos originales (Temperatura)
 	fig, ax1 = plt.subplots()
