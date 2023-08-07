@@ -117,7 +117,7 @@ def plot_data(data): # El unico parametro de entrada que acepta es "data" la lis
 	fig, ax1 = plt.subplots()
 
 	ax1.set_xlabel('Tiempo')
-	ax1.set_ylabel('Temperatura (ºC)', color = 'tab:blue')
+	ax1.set_ylabel('Temperatura (ºC)', color='#0000FF')
 	ax1.plot(data[0], data[1], label='Temperatura Ambiente', color='#0000FF', linestyle='--')
 	ax1.tick_params(axis='y', labelcolor='#0000FF')
 
@@ -133,25 +133,26 @@ def plot_data(data): # El unico parametro de entrada que acepta es "data" la lis
 	# plt.legend() # Mostrar leyenda
 	plt.grid(True) # Mostrar una grilla para facilitar la lectura
 
-	# "Handles" para las estadísticas de temperatura
+	# Definimos las líneas de la gráfica
+	temp_handle, = ax1.plot(data[0], data[1], label='Temperatura Ambiente', color='#0000FF', linestyle='--')
 
-	handle1, = ax1.plot([], [], marker="", linestyle="", label=f"Min Temp: {min_temp:.2f} ºC")
-	handle2, = ax1.plot([], [], marker="", linestyle="", label=f"Max Temp: {max_temp:.2f} ºC")
-	handle3, = ax1.plot([], [], marker="", linestyle="", label=f"Mean Temp: {mean_temp:.2f} ºC")
-	handle4, = ax1.plot([], [], marker="", linestyle="", label=f"Std Dev: {std_temp:.2f}")
-	handle5, = ax1.plot([], [], marker="", linestyle="", label=f"Num of Readings: {num_readings}")
-	handle6, = ax1.plot([], [], marker="", linestyle="", label=f"Start Time: {start_time}")
-	handle7, = ax1.plot([], [], marker="", linestyle="", label=f"End Time: {end_time}")
-	handle8, = ax1.plot([], [], marker="", linestyle="", label=f"Total Time: {total_time}")
-	handle9, = ax1.plot([], [], marker="", linestyle="", label=f"Sampling Interval: {sampling_interval}")
+	# Definimos las leyendas usando líneas invisibles
+	labels = [
+    f"Min Temp: {min_temp:.2f} ºC",
+    f"Max Temp: {max_temp:.2f} ºC",
+    f"Mean Temp: {mean_temp:.2f} ºC",
+    f"Std Dev: {std_temp:.2f}",
+    f"Num of Readings: {num_readings}",
+    f"Start Time: {start_time}",
+    f"End Time: {end_time}",
+    f"Total Time: {total_time}",
+    f"Sampling Interval: {sampling_interval}"
+	]
+	handles = [temp_handle] + [ax1.plot([], [], marker="", linestyle="", label=label)[0] for label in labels]
 
-	# Mostrando la leyenda con todas las etiquetas
-	handles = [temp_handle, handle1, handle2, handle3, handle4, handle5, handle6, handle7, handle8, handle9]
-	
-	ax1.legend(loc="upper left")
+	# Mostramos la leyenda con todas las etiquetas en el eje izquierdo
+	ax1.legend(handles=handles, loc="upper left")
 
-	# Para incluir la leyenda de la derivada en el eje derecho
-	ax1.legend(loc="upper left")
 
 	# para visualizar el gráfico en una ventana emergente.
 	plt.show() # Esta función muestra el gráfico y permite al usuario interactuar con él
