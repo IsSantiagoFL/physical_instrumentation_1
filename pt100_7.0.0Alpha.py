@@ -132,7 +132,19 @@ def plot_data(data): # El unico parametro de entrada que acepta es "data" la lis
 	fig.tight_layout()
 	# plt.legend() # Mostrar leyenda
 	plt.grid(True) # Mostrar una grilla para facilitar la lectura
-	
+
+	handle1, = ax1.plot([], [], marker="", linestyle="", label=f"Min Temp: {min_temp:.2f} ºC")
+	handle2, = ax1.plot([], [], marker="", linestyle="", label=f"Max Temp: {max_temp:.2f} ºC")
+	handle3, = ax1.plot([], [], marker="", linestyle="", label=f"Mean Temp: {mean_temp:.2f} ºC")
+	handle4, = ax1.plot([], [], marker="", linestyle="", label=f"Std Dev: {std_temp:.2f}")
+	handle5, = ax1.plot([], [], marker="", linestyle="", label=f"Num of Readings: {num_readings}")
+		
+	# Mostrando la leyenda con todas las etiquetas
+	ax1.legend(loc="upper left", handles=[handle1, handle2, handle3, handle4, handle5])
+
+	# Para incluir la leyenda de la derivada en el eje derecho
+	ax2.legend(loc="upper right")
+
 	# para visualizar el gráfico en una ventana emergente.
 	plt.show() # Esta función muestra el gráfico y permite al usuario interactuar con él
 
@@ -150,6 +162,14 @@ if __name__ == "__main__":
 
 	# Adquisición de datos
 	data = collect_data(device, NUM_READINGS) # Se hace al adquisiscion de datos y se guarda en la varible "data"
+	
+	# Calculando las estadísticas
+	temperatures = np.array(data[1])
+	min_temp = np.min(temperatures)
+	max_temp = np.max(temperatures)
+	mean_temp = np.mean(temperatures)
+	std_temp = np.std(temperatures)
+	num_readings = len(temperatures)
 
 	# Guardar los datos en un archivo CSV:
 	save_to_csv(data, "temperatura_ambiente.csv")
