@@ -118,13 +118,13 @@ def plot_data(data): # El unico parametro de entrada que acepta es "data" la lis
 
 	ax1.set_xlabel('Tiempo')
 	ax1.set_ylabel('Temperatura (ºC)', color = 'tab:blue')
-	ax1.plot(data[0], data[1], label='Temperatura Ambiente', color='#0000FF')  # Azul oscuro
-	ax1.tick_params(axis='y', labelcolor='#0000FF')
+	ax1.plot(data[0], data[1], label='Temperatura Ambiente', color='#0000FF', linestyle='--')
+	ax1.tick_params(axis='y', labelcolor='#0000FF')a
 
 	# Creando un segundo eje para la derivada
 	ax2 = ax1.twinx()
 	ax2.set_ylabel('Derivada (ºC/s)', color = 'tab:red')
-	ax2.plot(data[0][1:], derivatives, label='Derivada', color='red', alpha=0.5)  # Color rojo con transparencia
+	ax2.plot(data[0][1:], derivatives, label='Derivada', color='red', alpha=0.75)  # Color rojo con transparencia
 	ax2.tick_params(axis='y', labelcolor='red')
 
 	# Configurando el aspecto visual
