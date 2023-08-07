@@ -134,7 +134,7 @@ def plot_data(data): # El unico parametro de entrada que acepta es "data" la lis
 	plt.grid(True) # Mostrar una grilla para facilitar la lectura
 
 	# "Handles" para las estadísticas de temperatura
-	temp_handle, = ax1.plot(data[0], data[1], label = 'Temperatura Ambiente', color = 'tab:blue', linestyle='--')
+
 	handle1, = ax1.plot([], [], marker="", linestyle="", label=f"Min Temp: {min_temp:.2f} ºC")
 	handle2, = ax1.plot([], [], marker="", linestyle="", label=f"Max Temp: {max_temp:.2f} ºC")
 	handle3, = ax1.plot([], [], marker="", linestyle="", label=f"Mean Temp: {mean_temp:.2f} ºC")
@@ -151,7 +151,7 @@ def plot_data(data): # El unico parametro de entrada que acepta es "data" la lis
 	ax1.legend(loc="upper left")
 
 	# Para incluir la leyenda de la derivada en el eje derecho
-	ax2.legend(loc="upper right")
+	ax1.legend(loc="upper left")
 
 	# para visualizar el gráfico en una ventana emergente.
 	plt.show() # Esta función muestra el gráfico y permite al usuario interactuar con él
