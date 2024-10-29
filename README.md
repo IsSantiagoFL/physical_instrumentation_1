@@ -1,7 +1,3 @@
-Este proyecto, desarrollado como parte de un trabajo de investigación para el curso de **Instrumentación Física 1**, implementa un sistema de adquisición y análisis de datos de temperatura utilizando el sensor **PT100** conectado a través de un puerto serial. El sistema captura datos de temperatura en intervalos configurables, almacena la información en formato CSV, y ofrece análisis estadístico con visualización gráfica, incluyendo la derivada de la temperatura respecto al tiempo. Si bien este repositorio ha sido archivado, permanece disponible como referencia histórica. Para el desarrollo continuo del proyecto, incluidas nuevas características como visualización en tiempo real y soporte para múltiples sensores, visita el nuevo repositorio activo: [**PT100-Temperature-Logger-Analyzer**](https://github.com/IsSantiagoFL/PT100-Temperature-Logger-Analyzer). El informe técnico detallado del sistema está disponible para descarga en formato PDF [aquí](https://github.com/IsSantiagoFL/physical_instrumentation_1/blob/main/Informe_PT100_Instrumentacion_Fisica_Santiago_Flores.pdf).
-
----
-
 # Proyecto de Registro y Análisis de Temperatura
 
 ## Descripción
