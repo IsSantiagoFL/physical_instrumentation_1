@@ -73,7 +73,7 @@ Este repositorio ha sido archivado y ya no se mantendrá. Sin embargo, el proyec
 
 Para seguir el desarrollo activo y actualizado, visita:
 
-🔗 [**Temperature Logger and Data Analyzer**](https://github.com/IsSantiagoFL/temperature-logger-analyzer)
+🔗 [**Temperature Logger and Data Analyzer**](https://github.com/IsSantiagoFL/PT100-Temperature-Logger-Analyzer)
 
 ### Mejoras en el Nuevo Repositorio
 
