@@ -85,7 +85,7 @@ Para seguir el desarrollo activo y actualizado, visita:
 
 Si deseas acceder al informe técnico completo que documenta el diseño del sistema de medición y análisis del **PT100**, puedes descargar el PDF en el siguiente enlace:
 
-📄 [**Descargar Informe Técnico**](https://drive.google.com/file/d/1GVOC27yd9l4mpjpVKWqe_w96BAOL_tJW/view?usp=sharing)
+📄 [**Descargar Informe Técnico**](https://github.com/IsSantiagoFL/physical_instrumentation_1/blob/main/Informe_PT100_Instrumentacion_Fisica_Santiago_Flores.pdf)
 
 ---
 
