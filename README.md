@@ -1,4 +1,4 @@
-Aquí tienes la versión mejorada del README, que ahora incluye detalles sobre la integración con el sensor **PT100**, instrucciones sobre cómo ejecutar el código, configurar el entorno Python, e instalar las dependencias necesarias:
+Este proyecto, desarrollado como parte de un trabajo de investigación para el curso de **Instrumentación Física 1**, implementa un sistema de adquisición y análisis de datos de temperatura utilizando el sensor **PT100** conectado a través de un puerto serial. El sistema captura datos de temperatura en intervalos configurables, almacena la información en formato CSV, y ofrece análisis estadístico con visualización gráfica, incluyendo la derivada de la temperatura respecto al tiempo. Si bien este repositorio ha sido archivado, permanece disponible como referencia histórica. Para el desarrollo continuo del proyecto, incluidas nuevas características como visualización en tiempo real y soporte para múltiples sensores, visita el nuevo repositorio activo: [**PT100-Temperature-Logger-Analyzer**](https://github.com/IsSantiagoFL/PT100-Temperature-Logger-Analyzer). El informe técnico detallado del sistema está disponible para descarga en formato PDF [aquí](https://github.com/IsSantiagoFL/physical_instrumentation_1/blob/main/Informe_PT100_Instrumentacion_Fisica_Santiago_Flores.pdf).
 
 ---
 
@@ -16,6 +16,9 @@ Este repositorio, aunque ahora archivado, permanece disponible como referencia h
 - **Almacenamiento en CSV**: Los datos recolectados se almacenan en un archivo CSV para su análisis posterior.
 - **Análisis Estadístico**: Cálculo automático de la temperatura mínima, máxima, media y desviación estándar.
 - **Visualización de Datos**: Generación de gráficos que muestran la evolución de la temperatura y su derivada respecto al tiempo.
+
+![Gráfico Generado con el Codigo del Proyecto para la aquisisción de Datos](https://github.com/user-attachments/assets/2cc804f9-1ed6-4264-ac68-6a72fd83feed)
+
 
 ## Cómo Ejecutar el Proyecto
 
@@ -94,6 +97,3 @@ Si deseas acceder al informe técnico completo que documenta el diseño del sist
 - **Autor**: Santiago Ismael Flores-Chávez  
 - **GitHub**: [IsSantiagoFL](https://github.com/IsSantiagoFL)
 
----
-
-Este README incluye ahora instrucciones claras sobre cómo ejecutar el proyecto, instalar dependencias, y está específicamente diseñado para trabajar con el sensor PT100. Además, proporciona una referencia directa al nuevo repositorio para el desarrollo continuo del proyecto.
