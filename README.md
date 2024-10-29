@@ -1,5 +1,11 @@
 # Proyecto de Registro y Análisis de Temperatura
 
+Este repositorio ha sido archivado y ya no se mantendrá. Sin embargo, el proyecto ha sido migrado a un nuevo repositorio donde se seguirán desarrollando nuevas características y mejoras.
+
+Para seguir el desarrollo activo y actualizado, visita:
+
+🔗 [**Temperature Logger and Data Analyzer**](https://github.com/IsSantiagoFL/PT100-Temperature-Logger-Analyzer)
+
 ## Descripción
 
 Este proyecto fue desarrollado como parte de un trabajo de investigación para el curso de **Instrumentación Física 1**. El objetivo del proyecto era diseñar un sistema que permita recolectar, almacenar y analizar datos de temperatura utilizando el sensor **PT100** conectado a través de un dispositivo de medición y un puerto serial. Además de la adquisición de datos, el sistema ofrece análisis estadístico y visualización gráfica que incluye la temperatura y su derivada en función del tiempo.
